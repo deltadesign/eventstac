@@ -1,25 +1,55 @@
-import logo from './logo.svg';
+import React from 'react';
+import { ApiClient } from './ApiClient';
+
+//components
+import Etable from './components/eTable';
+
+// bootstrap Components
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Spinner from 'react-bootstrap/spinner';
+
+// CSS
 import './App.css';
 
-function App() {
+
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true,
+      eventList: []
+    };
+    this.ApiClient = new ApiClient();
+  }
+
+  componentDidMount() {
+    this.getEvents()
+  }
+
+  getEvents() {
+    this.ApiClient.getEventList().then((response) => {
+      this.setState({
+        loading: false,
+        eventList: response.data
+      })
+    })
+  }
+
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+
+    <pre>{JSON.stringify(this.state)}</pre>
+    
+    <Container className="App">
+     {this.state.loading ?  <Spinner animation="border" />:<Etable eventList = {this.state.eventList} />}
+    </Container>
+
+    </>
   );
+}
 }
 
 export default App;
