@@ -1,17 +1,16 @@
 //https://deltadesign.github.io/eventstac/
 
 import React from 'react';
-import { ApiClient } from './ApiClient';
-
 //components
 import Etable from './components/eTable';
-
+import { ApiClient } from './ApiClient';
 // bootstrap Components
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
-import Spinner from 'react-bootstrap/spinner';
-
-// CSS
+import Navbar from 'react-bootstrap/Navbar';
+// import Nav from 'react-bootstrap/nav';
+// import Spinner from 'react-bootstrap/spinner';
+// Application CSS
 import './App.css';
 
 class App extends React.Component {
@@ -43,7 +42,10 @@ class App extends React.Component {
     {/* <pre>{JSON.stringify(this.state)}</pre> */}
 
     <Container className="App">
-     {this.state.loading ?  <Spinner animation="border" />:<Etable eventList = {this.state.eventList} />}
+      <Navbar bg="light" expand="md">
+      <Navbar.Brand href="#home">EventStac</Navbar.Brand>
+      </Navbar>
+      {this.state.loading ?  "Loading Events...":<Etable eventList = {this.state.eventList} />}
     </Container>
 
     </>

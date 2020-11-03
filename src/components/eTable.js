@@ -31,6 +31,7 @@ class Etable extends React.Component {
             <th>Date</th>
             <th>Summary</th>
             <th>Attending</th>
+            <th>Action</th>
           </tr>
         </thead>
 
