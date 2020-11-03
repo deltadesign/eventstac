@@ -1,3 +1,5 @@
+//https://deltadesign.github.io/eventstac/
+
 import React from 'react';
 import { ApiClient } from './ApiClient';
 
@@ -11,8 +13,6 @@ import Spinner from 'react-bootstrap/spinner';
 
 // CSS
 import './App.css';
-
-
 
 class App extends React.Component {
   constructor(props) {
@@ -40,9 +40,8 @@ class App extends React.Component {
   render() {
   return (
     <>
+    {/* <pre>{JSON.stringify(this.state)}</pre> */}
 
-    <pre>{JSON.stringify(this.state)}</pre>
-    
     <Container className="App">
      {this.state.loading ?  <Spinner animation="border" />:<Etable eventList = {this.state.eventList} />}
     </Container>

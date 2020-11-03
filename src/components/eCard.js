@@ -8,7 +8,7 @@ class Ecard extends React.Component {
       <td>{this.props.location}</td>
       <td>{this.props.date}</td>
       <td>{this.props.detail}</td>
-      <td>{this.props.attending}</td>
+      <td>{this.props.attending ? <p>Yes</p>:<p>No</p>}</td>
     </tr>
     )
   }

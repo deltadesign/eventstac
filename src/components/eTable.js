@@ -17,9 +17,9 @@ class Etable extends React.Component {
       location = {event.location}
       date = {event.date}
       detail = {event.detail}
-      attending = {event.attending}
-    />))
-  }
+      attending = {event.attending} />
+      ))
+    }
 
   render(){
     return (
@@ -34,7 +34,7 @@ class Etable extends React.Component {
           </tr>
         </thead>
 
-        {this.createEventsList}
+        {this.createEventsList()}
           
       </Table>
     )

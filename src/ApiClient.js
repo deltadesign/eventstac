@@ -10,19 +10,18 @@ export class ApiClient {
     }
   }
 
+  getEventList() {
+    return this.getRequest("https://cors-anywhere.herokuapp.com/https://eventstac.herokuapp.com/events");
+  }
 
-getEventList () {
-  return this.getRequest("https://cors-anywhere.herokuapp.com/https://eventstac.herokuapp.com/events")
-}
-
-getRequest(url) {
-  return axios
-  .get(url)
-  .then(this.status)
-  .catch((error) => {
-    console.log(error)
-    alert(error)
-  })
-}
+  getRequest(url) {
+    return axios
+    .get(url)
+    .then(this.status)
+    .catch((error) => {
+      console.log(error)
+      alert(error)
+    })
+  }
 
 }
