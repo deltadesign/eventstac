@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/button';
 
 class Ecard extends React.Component {
   render() {
+
     return (
     <tr>
       <td>{this.props.name}</td>
@@ -11,7 +12,7 @@ class Ecard extends React.Component {
       <td>{this.props.date}</td>
       <td>{this.props.detail}</td>
       <td>{this.props.attending ? <p>Yes</p>:<p>No</p>}</td>
-      <td><Button variant ='outline-danger'>Delete</Button></td>
+      <td><Button variant ='outline-danger'>X</Button></td>
     </tr>
     )
   }

@@ -2,6 +2,7 @@
 
 import React from 'react';
 //components
+import Add from './components/addForm'
 import Etable from './components/eTable';
 import { ApiClient } from './ApiClient';
 // bootstrap Components
@@ -39,12 +40,14 @@ class App extends React.Component {
   render() {
   return (
     <>
-    {/* <pre>{JSON.stringify(this.state)}</pre> */}
+    <pre>{JSON.stringify(this.state)}</pre>
 
     <Container className="App">
-      <Navbar bg="light" expand="md">
-      <Navbar.Brand href="#home">EventStac</Navbar.Brand>
+      <Navbar variant="dark" expand="sm" className="navbar">
+        <Navbar.Brand>EventStagram</Navbar.Brand>
+        <Navbar.Text></Navbar.Text>
       </Navbar>
+      <Add />
       {this.state.loading ?  "Loading Events...":<Etable eventList = {this.state.eventList} />}
     </Container>
 
