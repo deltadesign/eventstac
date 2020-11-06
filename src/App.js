@@ -25,7 +25,7 @@ class App extends React.Component {
     <>
       <Container className="App">
 
-        <Navbar variant="dark" expand="sm" className="navbar">
+        <Navbar variant="dark" expand="sm" className=" mt-2 navbar">
           <Navbar.Brand>EventStagram</Navbar.Brand>
         </Navbar>
 

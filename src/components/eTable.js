@@ -20,7 +20,7 @@ class Etable extends React.Component {
   getEvents() {
     this.props.ApiClient.getEventList()
     .then((response) => this.setState({
-      loading: !this.state.loading,
+      loading: false,
       eventList: response.data
     }))
     // this.forceUpdate();
@@ -57,7 +57,7 @@ class Etable extends React.Component {
         <h4>Helper stuff</h4>
         <Add ApiClient = {this.props.ApiClient} getEvents = {() => {this.getEvents()}} />
         <h2>{this.state.eventList.length} events</h2>
-        {/* <pre>{JSON.stringify(this.state)}</pre> */}
+        <pre>{JSON.stringify(this.state)}</pre>
         <Table>
           <thead>
             <tr>
