@@ -42,8 +42,8 @@ class Add extends React.Component {
   render(){
     return (
       <>
-      <pre>AddForm = {JSON.stringify(this.state)}</pre>
-      <pre>disabledForm = {JSON.stringify(this.state.disabled)}</pre>
+      {/* <pre>AddForm = {JSON.stringify(this.state)}</pre>
+      <pre>disabledForm = {JSON.stringify(this.state.disabled)}</pre> */}
         <Form className="mt-2 mb-2" onSubmit = {(e) => this.submitHandler(e)}>
           {/* FIRST ROW */}
           <Form.Row>
