@@ -1,12 +1,36 @@
 import React from 'react';
+
+//Bootstrap Components
 import Form from 'react-bootstrap/form';
 import Col from 'react-bootstrap/col';
+import Button from 'react-bootstrap/Button';
 
 class Add extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      name:"",
+      location:"",
+      date:"",
+      detail:""
+    }
+  }
+
+  changeHandler(e) {
+    const newstate ={};
+    newstate[e.target.name] = e.target.value;
+    this.setState(newstate)
+  }
+
+  submitHandler(e){
+    e.preventDefault()
+    console.log(e)
+  }
+
   render(){
     return (
       <>
-        <Form className="mt-2">
+        <Form className="mt-2 mb-2" onSubmit = {(e) => this.submitHandler(e)}>
           <Form.Row>
             <Col>
               <Form.Group controlId="name">
@@ -36,9 +60,15 @@ class Add extends React.Component {
             </Col>
           </Form.Row>
 
-          <Form.Group controlId="detail">
-            <Form.Control name="detail" type = "text" placeholder="Summary"/>
-          </Form.Group>
+          <Form.Row>
+            <Col>
+              <Form.Group controlId="detail">
+                <Form.Control name="detail" type = "text" placeholder="Summary"/>
+              </Form.Group>
+            </Col>
+          </Form.Row>
+
+          <Button variant = "outline-success" type = "submit">Submit</Button>
           
         </Form>
       </>
