@@ -2,6 +2,7 @@ import React from 'react';
 
 //components
 import Ecard from './eCard';
+import Add from './addForm';
 
 //Bootstrap
 import Table from 'react-bootstrap/table';
@@ -53,7 +54,9 @@ class Etable extends React.Component {
     render(){
       return (
         <>
-        <h1>{this.state.eventList.length}</h1>
+        <h4>Helper stuff</h4>
+        <Add ApiClient = {this.props.ApiClient} getEvents = {() => {this.getEvents()}} />
+        <h2>{this.state.eventList.length} events</h2>
         {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Table>
           <thead>

@@ -11,10 +11,11 @@ export class ApiClient {
     }
   }
 
-  request(method , url) {
+  request(method , url , data) {
     return axios({
       method,
-      url
+      url,
+      data
     })
     .then(this.status)
     .catch((error) => {
@@ -35,8 +36,8 @@ export class ApiClient {
   }
   // add event
   //https://eventstac.herokuapp.com/event/create
-  addEvent(){
-
+  addEvent(name, location, date, detail){
+    return this.request('post' , `${url}event/create`, { name, location, date, detail })
   }
   //update event 
   //https://eventstac.herokuapp.com/event/<id>

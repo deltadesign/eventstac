@@ -3,7 +3,6 @@
 import React from 'react';
 
 //components
-import Add from './components/addForm'
 import Etable from './components/eTable';
 import { ApiClient } from './ApiClient';
 
@@ -30,12 +29,9 @@ class App extends React.Component {
           <Navbar.Brand>EventStagram</Navbar.Brand>
         </Navbar>
 
-        <Add />
-
-        <Etable ApiClient = {this.ApiClient} />
+        <Etable ApiClient = {this.ApiClient}/>
 
       </Container>
-
     </>
   );
 }
