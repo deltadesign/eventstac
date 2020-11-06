@@ -39,6 +39,11 @@ export class ApiClient {
   addEvent(name, location, date, detail){
     return this.request('post' , `${url}event/create`, { name, location, date, detail })
   }
+  //toggleattend
+  //https://eventstac.herokuapp.com/attend/<id>
+  toggleAttend(id){
+    return this.request('put', `${url}attend/${id}`)
+  }
   //update event 
   //https://eventstac.herokuapp.com/event/<id>
   updateEvent(){

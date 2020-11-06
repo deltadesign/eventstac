@@ -32,6 +32,12 @@ class Etable extends React.Component {
     .then(() => this.getEvents()) 
   }
 
+  // toggles attending status
+  toggleAttend(id) {
+    this.props.ApiClient.toggleAttend(id)
+    .then(() => this.getEvents()) 
+  }
+
   //Lifecycle method - calls the required functions to start the app
   componentDidMount() {
     this.getEvents()
@@ -47,18 +53,19 @@ class Etable extends React.Component {
       date = {event.date}
       detail = {event.detail}
       attending = {event.attending} 
-      remove = {(i) => this.removeEvent(event._id)} />
+      remove = {(i) => this.removeEvent(event._id)}
+      toggleAttend = {(i) => this.toggleAttend(event._id)} />
       ))
     }
 
     render(){
       return (
         <>
-        <h4>Helper stuff</h4>
+        {/* <h4>Helper stuff</h4> */}
         <Add ApiClient = {this.props.ApiClient} getEvents = {() => {this.getEvents()}} />
-        <h2>{this.state.eventList.length} events</h2>
-        <pre>{JSON.stringify(this.state)}</pre>
-        <Table>
+        {/* <h2>{this.state.eventList.length} events</h2>
+        <pre>{JSON.stringify(this.state)}</pre> */}
+        <Table responsive>
           <thead>
             <tr>
               <th>Event</th>
