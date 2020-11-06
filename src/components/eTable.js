@@ -15,25 +15,25 @@ class Etable extends React.Component {
     }
   }
 
-  //Lifecycle method - calls the required functions to start the app
-  componentDidMount() {
-    this.getEvents()
-  }
-
   //Sets State of App.js to the event list retrived from the API
   getEvents() {
     this.props.ApiClient.getEventList()
     .then((response) => this.setState({
-      loading: false,
-      eventList: response.data}
-    ))
-    console.log(this.state.eventList.length)
+      loading: !this.state.loading,
+      eventList: response.data
+    }))
+    // this.forceUpdate();
   }
 
   // removes an event from the list
-  remove(id){
+  removeEvent(id) {
     this.props.ApiClient.removeEvent(id)
-    .then(this.getEvents())
+    .then(() => this.getEvents()) 
+  }
+
+  //Lifecycle method - calls the required functions to start the app
+  componentDidMount() {
+    this.getEvents()
   }
 
   // creates a table of events from state
@@ -46,13 +46,15 @@ class Etable extends React.Component {
       date = {event.date}
       detail = {event.detail}
       attending = {event.attending} 
-      remove = {(i) => this.remove(event._id)} />
+      remove = {(i) => this.removeEvent(event._id)} />
       ))
     }
 
     render(){
       return (
         <>
+        <h1>{this.state.eventList.length}</h1>
+        {/* <pre>{JSON.stringify(this.state)}</pre> */}
         <Table>
           <thead>
             <tr>
@@ -68,7 +70,6 @@ class Etable extends React.Component {
             {this.createEventsList()}
           </tbody>
         </Table>
-        <pre>{JSON.stringify(this.state)}</pre>
         </>
       )
   }
