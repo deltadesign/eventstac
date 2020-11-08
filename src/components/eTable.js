@@ -69,7 +69,7 @@ class Etable extends React.Component {
       attending = {event.attending} 
       remove = {(i) => this.removeEvent(event._id)}
       toggleAttend = {(i) => this.toggleAttend(event._id)}
-      editEvent = {(i) => this.editEvent(event._id, event.name, event.location, event.date, event.detail)} />
+      editEvent = {(i) => this.editEvent(event._id, event.name, event.location, String(event.date).slice(0, 10), event.detail)} />
       ))
     }
 

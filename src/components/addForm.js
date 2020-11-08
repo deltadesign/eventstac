@@ -38,9 +38,10 @@ class Add extends React.Component {
     })
   }
 
-  // clearForm(){
-  //   document.getElementById("addform").reset()  
-  // }
+  clearForm(){
+    this.props.getEvents()
+    document.getElementById("addform").reset()  
+  }
 
   render(){
     return (
@@ -87,7 +88,7 @@ class Add extends React.Component {
               <Form.Group>
                 <Form.Control 
                   name="date" 
-                  defaultValue = {String(this.props.event?.date).slice(0,10)}
+                  defaultValue = {this.props.event?.date}
                   type = "date" 
                   disabled = {this.state.disabled}
                   required
@@ -127,11 +128,11 @@ class Add extends React.Component {
             type = "submit" disabled = {this.state.disabled}>
             {this.props.event?.name ? 'Update':'Submit'}</Button>
 
-          {/* <Button 
-            style = {{visibility: this.props.event.name ? 'visible' : 'hidden'}}
+          <Button 
+            style = {{visibility: this.props.event._id? 'visible' : 'hidden'}}
             variant = "outline-danger"
             onClick = {() => this.clearForm()}
-            >Cancel</Button> */}
+            >Cancel</Button>
 
         </Form>
       </>
