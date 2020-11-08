@@ -13,7 +13,7 @@ class Etable extends React.Component {
     this.state = {
       loading : true,
       eventList : [],
-      editEvent: []
+      editEvent: ""
     }
   }
 
@@ -81,9 +81,9 @@ class Etable extends React.Component {
              getEvents = {() => this.getEvents()}
              event = {this.state.editEvent}     
         />
-        <h4>Helper stuff TABLE</h4>
+        {/* <h4>Helper stuff TABLE</h4>
         <h2>{this.state.eventList.length} events</h2>
-        <pre>{JSON.stringify(this.state.editEvent)}</pre>
+        <pre>{JSON.stringify(this.state.editEvent)}</pre> */}
         <Table responsive>
           <thead>
             <tr>

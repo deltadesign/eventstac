@@ -13,17 +13,11 @@ class Add extends React.Component {
     }
   }
 
-  changeHandler(e) {
-    const newstate ={};
-    newstate[e.target.name] = e.target.value;
-    this.setState(newstate)
-  }
-
   submitHandler(e){
     e.preventDefault()
     this.setState({disabled:true})
     let action;
-    if (this.props.event) {
+    if (this.props.event._id) {
       action = this.props.ApiClient.updateEvent(
         this.props.event._id, 
         e.target.name.value , 
@@ -44,28 +38,27 @@ class Add extends React.Component {
     })
   }
 
-  clearForm(){
-    console.log('Clicked')    
-  }
+  // clearForm(){
+  //   document.getElementById("addform").reset()  
+  // }
 
   render(){
     return (
       <>
-      <pre>AddForm = {JSON.stringify(this.state)}</pre>
-      <pre>Editing = {JSON.stringify(this.state.editing)}</pre>
+      {/* <pre>AddForm = {JSON.stringify(this.state)}</pre>
       <pre>Editing = {JSON.stringify(this.props.event)}</pre>
-      <pre>date = {String(this.props.event.date).slice(0,10)}</pre>
+      <pre>status = {this.props.event._id? 'Update': 'New' }</pre> */}
         <Form id = "addform" className="mt-2 mb-2" onSubmit = {(e) => this.submitHandler(e)}>
           {/* FIRST ROW */}
           <Form.Row>
             <Col>
-              <Form.Group controlId="name">
+              <Form.Group>
                 <Form.Control 
                   name="name" 
                   type = "text"
                   defaultValue = {this.props.event?.name}
                   placeholder="Event Name" 
-                  onChange = {(e) => this.changeHandler(e)}
+                  // onChange = {(e) => this.changeHandler(e)}
                   disabled = {this.state.disabled}
                   required
                   />
@@ -75,13 +68,13 @@ class Add extends React.Component {
           {/* SECOND ROW */}
           <Form.Row>
             <Col>
-              <Form.Group controlId="location">
+              <Form.Group>
                 <Form.Control 
                   name="location" 
                   defaultValue = {this.props.event?.location}
                   type = "text" 
                   placeholder="Location" 
-                  onChange = {(e) => this.changeHandler(e)}
+                  // onChange = {(e) => this.changeHandler(e)}
                   disabled = {this.state.disabled}
                   required
                   />
@@ -91,39 +84,36 @@ class Add extends React.Component {
           {/* THIRD ROW */}
           <Form.Row>
             <Col>
-              <Form.Group controlId="date">
+              <Form.Group>
                 <Form.Control 
                   name="date" 
                   defaultValue = {String(this.props.event?.date).slice(0,10)}
                   type = "date" 
-                  onChange = {(e) => this.changeHandler(e)}
                   disabled = {this.state.disabled}
                   required
                   />
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group controlId="time">
+              {/* <Form.Group controlId="time">
                 <Form.Control 
                   name="time"
                   defaultValue = {this.state.time}
                   type = "time" 
-                  onChange = {(e) => this.changeHandler(e)}
                   disabled = {this.state.disabled}
                   />
-              </Form.Group>
+              </Form.Group> */}
             </Col>
           </Form.Row>
           {/* FOURTH ROW */}
           <Form.Row>
             <Col>
-              <Form.Group controlId="detail">
+              <Form.Group>
                 <Form.Control 
                   name="detail" 
                   defaultValue = {this.props.event?.detail} 
                   type = "text" 
                   placeholder="Summary" 
-                  onChange = {(e) => this.changeHandler(e)}
                   disabled = {this.state.disabled}
                   required
                   />
@@ -135,7 +125,7 @@ class Add extends React.Component {
             className = 'mr-2'
             variant = "outline-success" 
             type = "submit" disabled = {this.state.disabled}>
-            {this.props.event.name ? 'Update':'Submit'}</Button>
+            {this.props.event?.name ? 'Update':'Submit'}</Button>
 
           {/* <Button 
             style = {{visibility: this.props.event.name ? 'visible' : 'hidden'}}

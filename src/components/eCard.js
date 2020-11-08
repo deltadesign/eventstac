@@ -10,7 +10,7 @@ class Ecard extends React.Component {
         <tr>
         <td>{this.props.name}</td>
         <td>{this.props.location}</td>
-        <td>{this.props.date}</td>
+        <td>{String(this.props.date).slice(0,10)}</td>
         <td>{this.props.detail}</td>
         <td> <Button style={{width: '3em'}} variant ={this.props.attending ? "success" : "secondary"} onClick = {() => this.props.toggleAttend()}>{this.props.attending ? "Yes":"No"}</Button></td>
         <td>
