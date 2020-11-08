@@ -9,8 +9,7 @@ class Add extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      disabled: false,
-      editing: false
+      disabled: false,  
     }
   }
 
@@ -21,14 +20,15 @@ class Add extends React.Component {
   }
 
   submitHandler(e){
-    this.setState({disabled:true})
     e.preventDefault()
+    this.setState({disabled:true})
+    
     this.props.ApiClient.addEvent(this.state.name , this.state.location , this.state.date , this.state.detail)
-    .then(()=> this.props.getEvents())
-    .then(() => this.setState({
-      disabled: false,
-      editing: false
-    }))
+    .then(() => {
+      this.setState({disabled: false})
+      this.props.getEvents()
+      document.getElementById("addform").reset()
+    })
   }
 
   render(){
@@ -113,14 +113,16 @@ class Add extends React.Component {
             </Col>
           </Form.Row>
 
-          <Button variant = "outline-success" type = "submit" disabled = {this.state.disabled}>
-            {this.props.event.name ? 'Update':'Submit'}
-          </Button>
+          <Button 
+            className = 'mr-2'
+            variant = "outline-success" 
+            type = "submit" disabled = {this.state.disabled}>
+            {this.props.event.name ? 'Update':'Submit'}</Button>
 
-          {/* <Button variant = "outline-danger"  style = {{ visibility: this.props.event.name ? 'visible' : 'hidden'  }} onClick = {this.props.getEvents()}>
-            cancel
-          </Button> */}
-          
+          {/* <Button 
+            style = {{visibility: this.props.event.name ? 'visible' : 'hidden'}}
+            variant = "outline-danger"
+            onClick = {() => document.getElementById("addform").reset()}>Cancel</Button> */}
         </Form>
       </>
     )
