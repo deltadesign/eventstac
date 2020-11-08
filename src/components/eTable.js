@@ -22,7 +22,8 @@ class Etable extends React.Component {
     this.props.ApiClient.getEventList()
     .then((response) => this.setState({
       loading: false,
-      eventList: response.data
+      eventList: response.data,
+      editEvent: []
     }))
     // this.forceUpdate();
   }

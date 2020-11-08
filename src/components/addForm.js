@@ -9,11 +9,6 @@ class Add extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name:"",
-      location:"",
-      date:"",
-      time:"",
-      detail:"",
       disabled: false,
       editing: false
     }
@@ -31,12 +26,8 @@ class Add extends React.Component {
     this.props.ApiClient.addEvent(this.state.name , this.state.location , this.state.date , this.state.detail)
     .then(()=> this.props.getEvents())
     .then(() => this.setState({
-      name:"",
-      location:"",
-      date:"",
-      time:"",
-      detail:"",
-      disabled: false
+      disabled: false,
+      editing: false
     }))
   }
 
@@ -46,14 +37,15 @@ class Add extends React.Component {
       <pre>AddForm = {JSON.stringify(this.state)}</pre>
       <pre>Editing = {JSON.stringify(this.state.editing)}</pre>
       <pre>Editing = {JSON.stringify(this.props.event)}</pre>
-        <Form className="mt-2 mb-2" onSubmit = {(e) => this.submitHandler(e)}>
+      <pre>date = {String(this.props.event.date).slice(0,10)}</pre>
+        <Form id = "addform" className="mt-2 mb-2" onSubmit = {(e) => this.submitHandler(e)}>
           {/* FIRST ROW */}
           <Form.Row>
             <Col>
               <Form.Group controlId="name">
                 <Form.Control 
                   name="name" type = "text"
-                  value = {this.state.name}
+                  defaultValue = {this.props.event?.name}
                   placeholder="Event Name" 
                   onChange = {(e) => this.changeHandler(e)}
                   disabled = {this.state.disabled}
@@ -68,7 +60,7 @@ class Add extends React.Component {
               <Form.Group controlId="location">
                 <Form.Control 
                   name="location" 
-                  value = {this.state.location}
+                  defaultValue = {this.props.event?.location}
                   type = "text" 
                   placeholder="Location" 
                   onChange = {(e) => this.changeHandler(e)}
@@ -84,7 +76,7 @@ class Add extends React.Component {
               <Form.Group controlId="date">
                 <Form.Control 
                   name="date" 
-                  value = {this.state.date}
+                  defaultValue = {String(this.props.event?.date).slice(0,10)}
                   type = "date" 
                   onChange = {(e) => this.changeHandler(e)}
                   disabled = {this.state.disabled}
@@ -96,11 +88,10 @@ class Add extends React.Component {
               <Form.Group controlId="time">
                 <Form.Control 
                   name="time"
-                  value = {this.state.time}
+                  defaultValue = {this.state.time}
                   type = "time" 
                   onChange = {(e) => this.changeHandler(e)}
                   disabled = {this.state.disabled}
-                  required
                   />
               </Form.Group>
             </Col>
@@ -111,7 +102,7 @@ class Add extends React.Component {
               <Form.Group controlId="detail">
                 <Form.Control 
                   name="detail" 
-                  value = {this.state.detail} 
+                  defaultValue = {this.props.event?.detail} 
                   type = "text" 
                   placeholder="Summary" 
                   onChange = {(e) => this.changeHandler(e)}
@@ -123,8 +114,12 @@ class Add extends React.Component {
           </Form.Row>
 
           <Button variant = "outline-success" type = "submit" disabled = {this.state.disabled}>
-            {this.state.editing ? 'Update':'Submit'}
+            {this.props.event.name ? 'Update':'Submit'}
           </Button>
+
+          {/* <Button variant = "outline-danger"  style = {{ visibility: this.props.event.name ? 'visible' : 'hidden'  }} onClick = {this.props.getEvents()}>
+            cancel
+          </Button> */}
           
         </Form>
       </>
