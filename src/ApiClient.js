@@ -46,7 +46,7 @@ export class ApiClient {
   }
   //update event 
   //https://eventstac.herokuapp.com/event/<id>
-  updateEvent(){
-
+  updateEvent(id, name, location, date, detail){
+    return this.request('put', `${url}/event/${id}`, { name, location, date, detail } )
   }
 }

@@ -76,7 +76,7 @@ class Etable extends React.Component {
     render(){
       return (
         <>
-        <h4>Helper stuff FORM</h4>
+        {/* <h4>Helper stuff FORM</h4> */}
         <Add ApiClient = {this.props.ApiClient} 
              getEvents = {() => this.getEvents()}
              event = {this.state.editEvent}     

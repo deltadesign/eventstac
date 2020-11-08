@@ -22,13 +22,30 @@ class Add extends React.Component {
   submitHandler(e){
     e.preventDefault()
     this.setState({disabled:true})
-    
-    this.props.ApiClient.addEvent(this.state.name , this.state.location , this.state.date , this.state.detail)
-    .then(() => {
+    let action;
+    if (this.props.event) {
+      action = this.props.ApiClient.updateEvent(
+        this.props.event._id, 
+        e.target.name.value , 
+        e.target.location.value , 
+        e.target.date.value , 
+        e.target.detail.value)
+    } else {
+      action = this.props.ApiClient.addEvent(
+        e.target.name.value, 
+        e.target.location.value, 
+        e.target.date.value, 
+        e.target.detail.value)}
+        console.log(action)
+    action.then(() => {
       this.setState({disabled: false})
       this.props.getEvents()
       document.getElementById("addform").reset()
     })
+  }
+
+  clearForm(){
+    console.log('Clicked')    
   }
 
   render(){
@@ -44,7 +61,8 @@ class Add extends React.Component {
             <Col>
               <Form.Group controlId="name">
                 <Form.Control 
-                  name="name" type = "text"
+                  name="name" 
+                  type = "text"
                   defaultValue = {this.props.event?.name}
                   placeholder="Event Name" 
                   onChange = {(e) => this.changeHandler(e)}
@@ -122,7 +140,9 @@ class Add extends React.Component {
           {/* <Button 
             style = {{visibility: this.props.event.name ? 'visible' : 'hidden'}}
             variant = "outline-danger"
-            onClick = {() => document.getElementById("addform").reset()}>Cancel</Button> */}
+            onClick = {() => this.clearForm()}
+            >Cancel</Button> */}
+
         </Form>
       </>
     )
