@@ -12,7 +12,8 @@ class Etable extends React.Component {
     super(props)
     this.state = {
       loading : true,
-      eventList : []
+      eventList : [],
+      editEvent: []
     }
   }
 
@@ -30,6 +31,18 @@ class Etable extends React.Component {
   removeEvent(id) {
     this.props.ApiClient.removeEvent(id)
     .then(() => this.getEvents()) 
+  }
+
+  // sets the event to be edited in state - which is then passed to Add for updating. 
+  editEvent(id, name, location, date, detail) {
+    this.setState({
+      editEvent: {
+      _id: id,
+      name: name,
+      location: location,
+      date: date, 
+      detail: detail}
+    }) 
   }
 
   // toggles attending status
@@ -54,17 +67,22 @@ class Etable extends React.Component {
       detail = {event.detail}
       attending = {event.attending} 
       remove = {(i) => this.removeEvent(event._id)}
-      toggleAttend = {(i) => this.toggleAttend(event._id)} />
+      toggleAttend = {(i) => this.toggleAttend(event._id)}
+      editEvent = {(i) => this.editEvent(event._id, event.name, event.location, event.date, event.detail)} />
       ))
     }
 
     render(){
       return (
         <>
-        {/* <h4>Helper stuff</h4> */}
-        <Add ApiClient = {this.props.ApiClient} getEvents = {() => {this.getEvents()}} />
-        {/* <h2>{this.state.eventList.length} events</h2>
-        <pre>{JSON.stringify(this.state)}</pre> */}
+        <h4>Helper stuff FORM</h4>
+        <Add ApiClient = {this.props.ApiClient} 
+             getEvents = {() => this.getEvents()}
+             event = {this.state.editEvent}     
+        />
+        <h4>Helper stuff TABLE</h4>
+        <h2>{this.state.eventList.length} events</h2>
+        <pre>{JSON.stringify(this.state.editEvent)}</pre>
         <Table responsive>
           <thead>
             <tr>
@@ -73,7 +91,7 @@ class Etable extends React.Component {
               <th>Date</th>
               <th>Summary</th>
               <th>Attending</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>

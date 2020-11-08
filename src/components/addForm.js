@@ -14,7 +14,8 @@ class Add extends React.Component {
       date:"",
       time:"",
       detail:"",
-      disabled: false
+      disabled: false,
+      editing: false
     }
   }
 
@@ -42,8 +43,9 @@ class Add extends React.Component {
   render(){
     return (
       <>
-      {/* <pre>AddForm = {JSON.stringify(this.state)}</pre>
-      <pre>disabledForm = {JSON.stringify(this.state.disabled)}</pre> */}
+      <pre>AddForm = {JSON.stringify(this.state)}</pre>
+      <pre>Editing = {JSON.stringify(this.state.editing)}</pre>
+      <pre>Editing = {JSON.stringify(this.props.event)}</pre>
         <Form className="mt-2 mb-2" onSubmit = {(e) => this.submitHandler(e)}>
           {/* FIRST ROW */}
           <Form.Row>
@@ -120,7 +122,9 @@ class Add extends React.Component {
             </Col>
           </Form.Row>
 
-          <Button variant = "outline-success" type = "submit" disabled = {this.state.disabled}>Submit</Button>
+          <Button variant = "outline-success" type = "submit" disabled = {this.state.disabled}>
+            {this.state.editing ? 'Update':'Submit'}
+          </Button>
           
         </Form>
       </>
