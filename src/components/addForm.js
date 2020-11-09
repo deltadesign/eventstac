@@ -99,7 +99,7 @@ class Add extends React.Component {
               {/* <Form.Group controlId="time">
                 <Form.Control 
                   name="time"
-                  defaultValue = {this.state.time}
+                  defaultValue = {this.props.event?.time}
                   type = "time" 
                   disabled = {this.state.disabled}
                   />
