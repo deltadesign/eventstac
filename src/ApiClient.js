@@ -36,8 +36,8 @@ export class ApiClient {
   }
   // add event
   //https://eventstac.herokuapp.com/event/create
-  addEvent(name, location, date, detail){
-    return this.request('post' , `${url}event/create`, { name, location, date, detail })
+  addEvent(name, location, date, time, detail){
+    return this.request('post' , `${url}event/create`, { name, location, date, time, detail })
   }
   //toggleattend
   //https://eventstac.herokuapp.com/attend/<id>
@@ -46,7 +46,7 @@ export class ApiClient {
   }
   //update event 
   //https://eventstac.herokuapp.com/event/<id>
-  updateEvent(id, name, location, date, detail){
-    return this.request('put', `${url}/event/${id}`, { name, location, date, detail } )
+  updateEvent(id, name, location, date, time, detail){
+    return this.request('put', `${url}/event/${id}`, { name, location, date, time, detail } )
   }
 }

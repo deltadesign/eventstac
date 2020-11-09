@@ -22,13 +22,15 @@ class Add extends React.Component {
         this.props.event._id, 
         e.target.name.value , 
         e.target.location.value , 
-        e.target.date.value , 
+        e.target.date.value ,
+        e.target.time.value ,
         e.target.detail.value)
     } else {
       action = this.props.ApiClient.addEvent(
         e.target.name.value, 
         e.target.location.value, 
         e.target.date.value, 
+        e.target.time.value, 
         e.target.detail.value)}
         console.log(action)
     action.then(() => {
@@ -46,9 +48,6 @@ class Add extends React.Component {
   render(){
     return (
       <>
-      {/* <pre>AddForm = {JSON.stringify(this.state)}</pre>
-      <pre>Editing = {JSON.stringify(this.props.event)}</pre>
-      <pre>status = {this.props.event._id? 'Update': 'New' }</pre> */}
         <Form id = "addform" className="mt-2 mb-2" onSubmit = {(e) => this.submitHandler(e)}>
           {/* FIRST ROW */}
           <Form.Row>
@@ -96,14 +95,14 @@ class Add extends React.Component {
               </Form.Group>
             </Col>
             <Col>
-              {/* <Form.Group controlId="time">
+              <Form.Group controlId="time">
                 <Form.Control 
                   name="time"
                   defaultValue = {this.props.event?.time}
                   type = "time" 
                   disabled = {this.state.disabled}
                   />
-              </Form.Group> */}
+              </Form.Group>
             </Col>
           </Form.Row>
           {/* FOURTH ROW */}
