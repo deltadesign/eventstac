@@ -17,7 +17,7 @@ class Etable extends React.Component {
     }
   }
 
-  //Sets State of App.js to the event list retrived from the API
+  //Sets State to the event list retrived from the API
   getEvents() {
     this.props.ApiClient.getEventList()
     .then((response) => this.setState({
@@ -88,7 +88,7 @@ class Etable extends React.Component {
               <th>Event</th>
               <th>Location</th>
               <th>Date</th>
-              <th>Summary</th>
+              <th>Description</th>
               <th>Attending</th>
               <th>Actions</th>
             </tr>

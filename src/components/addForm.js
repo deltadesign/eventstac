@@ -113,7 +113,7 @@ class Add extends React.Component {
                   name="detail" 
                   defaultValue = {this.props.event?.detail} 
                   type = "text" 
-                  placeholder="Summary" 
+                  placeholder="Description" 
                   disabled = {this.state.disabled}
                   required
                   />

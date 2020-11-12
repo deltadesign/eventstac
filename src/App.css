@@ -10,3 +10,9 @@
   border-radius: 1.2rem 1.2rem 0 0;
   border-bottom: 4px solid #444444;
 }
+
+#loginform {
+  border: 2px solid #bb41bb;
+  border-top: #444444 !important;
+  border-radius: 0px 0px 15px 15px;
+}

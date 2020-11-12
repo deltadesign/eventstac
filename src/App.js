@@ -4,6 +4,7 @@ import React from 'react';
 
 //components
 import Etable from './components/eTable';
+import Login from './components/login';
 import { ApiClient } from './ApiClient';
 
 // bootstrap Components
@@ -28,6 +29,8 @@ class App extends React.Component {
         <Navbar variant="dark" expand="sm" className=" mt-2 navbar">
           <Navbar.Brand>EventStagram</Navbar.Brand>
         </Navbar>
+
+        <Login />
 
         <Etable ApiClient = {this.ApiClient}/>
 
