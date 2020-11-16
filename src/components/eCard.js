@@ -7,7 +7,7 @@ class Ecard extends React.Component {
   render() {
     const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     const months = ['Jan', 'Feb','Mar','Apr','May','Jun','July','Aug','Sept','Oct','Nov','Dec']
-    const date = new Date (Date.parse(String(this.props.date).slice(0,10)))
+    const date = new Date (Date.parse(String(this.props.date).slice(0,10)));
     const dayOfMonth = date.getDate();
     const day = days[date.getDay()];
     const month = months[date.getMonth()];
